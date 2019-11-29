@@ -26,20 +26,17 @@ class ChildDAOTest {
     @Autowired
     private AddressDAO addressDAO;
 
-    @Autowired
-    private GiftDAO giftDAO;
-
     @Test
     void testInsertChild() {
         final Child child = new Child();
+        child.setId(1);
         child.setName("Thomas");
         Address address = addressDAO.getAddressById(3);
         child.setAddress(address);
+        int size = childDAO.getAllChildren().size();
         childDAO.addChild(child);
-        Child readChild = childDAO.getChildById(child.getId());
-        assertNotNull(readChild);
-        assertEquals("Thomas", readChild.getName());
-        assertEquals(3, readChild.getAddress().getId());
+        assertEquals(size+1, childDAO.getAllChildren().size());
+
     }
 
     @Test
@@ -54,12 +51,12 @@ class ChildDAOTest {
 
     @Test
     void testGetChildById() {
-        final int id = 1;
+        int id = 3;
 
         Child child = childDAO.getChildById(id);
 
         Address address = addressDAO.getAddressById(3);
-        assertEquals(1, child.getId());
+        assertEquals(id, child.getId());
         Child richard = new Child();
         richard.setName("Richard");
         richard.setAddress(address);
@@ -83,17 +80,19 @@ class ChildDAOTest {
     }
 
     @Test
-    void testAddGift() {
-        Gift gift = new Gift();
-        gift.setDescription("Tupperware 1");
-        giftDAO.addGift(gift);
+    void testRemoveChild() {
         List<Child> children = childDAO.getAllChildren();
-        Child richard = children.get(children.size()-1);
-        childDAO.addGift(richard, gift);
+        int size = children.size();
+        Child richard = children.get(size-1);
+        assertEquals("Richard Josef", richard.getName());
+        childDAO.removeChild(richard);
 
-        Child readRichard = childDAO.getChildById(richard.getId());
-        assertEquals(richard.getGifts().size(), readRichard.getGifts().size());
-        assertEquals(richard.getGifts().get(0).getId(), readRichard.getGifts().get(0).getId());
-        
+        children = childDAO.getAllChildren();
+        assertEquals(size-1, children.size());
+        Child thomas = children.get(size-2);
+        assertEquals("Thomas", thomas.getName());
+        childDAO.removeChild(thomas);
+        children = childDAO.getAllChildren();
+        assertEquals(size-2, children.size());
     }
 }
