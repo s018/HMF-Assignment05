@@ -5,22 +5,40 @@
 <mapper namespace="im430.xmas.dao.gift.GiftDAO">
     <insert id="addGift" parameterType="Gift"
             useGeneratedKeys="true" keyProperty="id">
-        insert into gift(description, child_id) values (#{description}, #{child.id})
+        insert into gift(description, child_id)
+        values (#{description}, #{child.id})
     </insert>
     <update id="updateGift" parameterType="Gift">
-        update gift set description=#{description} where id=#{id}
+        update gift
+        set description=#{description}
+        where id = #{id}
     </update>
     <delete id="removeGift" parameterType="Gift">
-        delete from gift where id=#{id}
+        delete
+        from gift
+        where id = #{id}
     </delete>
-    <select id="getAllGifts" resultType="Gift">
-        select id, description, child_id from gift order by id
+    <select id="getAllGifts" resultMap="giftResult">
+        select id, description, child_id
+        from gift
+        order by id
     </select>
-    <select id="getGiftById" resultType="Gift"
+    <select id="getGiftById" resultMap="giftResult"
             parameterType="int">
-        select id, description from gift where id=#{id}
+        select id, description, child_id
+        from gift
+        where id = #{id}
     </select>
-    <select id="getAllGiftsByChildId" resultType="Gift" parameterType="int">
-        select id, description from gift where child_id=#{id}
+    <select id="getAllGiftsByChildId" resultMap="giftResult" parameterType="int">
+        select id, description
+        from gift
+        where child_id = #{id}
     </select>
+
+    <resultMap id="giftResult" type="Gift">
+        <id property="id" column="id"/>
+        <result property="description" column="description"/>
+        <association property="child" column="child_id" javaType="Child"
+                     select="im430.xmas.dao.child.ChildDAO.getChildById"/>
+    </resultMap>
 </mapper>

@@ -31,7 +31,7 @@ public class GiftDAOImpl implements GiftDAO {
 
     @Transactional(readOnly=true)
     public Gift getGiftById(int id) {
-        return this.sqlSession.selectOne("im430.xmas.dao.gift.GiftDAO.getGiftById");
+        return this.sqlSession.selectOne("im430.xmas.dao.gift.GiftDAO.getGiftById", id);
     }
 
     @Transactional(readOnly=true)

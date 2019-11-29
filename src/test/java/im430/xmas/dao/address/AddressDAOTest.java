@@ -26,7 +26,8 @@ class AddressDAOTest {
     void testGetAllAddresses() {
         List<Address> addresses = addressDAO.getAllAddresses();
 
-        assertEquals(1, addresses.size());
+        assertNotNull(addresses);
+        assertEquals(2, addresses.size());
     }
 
     @Test
@@ -44,7 +45,6 @@ class AddressDAOTest {
     @Rollback
     void testInsertAddress() {
         final Address address = new Address("Softwarepark 41, 4232 Hagenberg i. M.");
-
         final int numberOfRowsBeforeInsert = addressDAO.getAllAddresses().size();
 
         addressDAO.addAddress(address);
