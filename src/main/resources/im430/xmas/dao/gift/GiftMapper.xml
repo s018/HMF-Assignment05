@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="im430.xmas.dao.gift.GiftDAO">
+    <insert id="addGift" parameterType="Gift" keyColumn="id"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into gift(description, child_id)
+        values (#{description}, #{child.id})
+    </insert>
+    <update id="updateGift" parameterType="Gift">
+        update gift
+        set description=#{description}, child_id=#{child.id}
+        where id = #{id}
+    </update>
+    <delete id="removeGift" parameterType="Gift">
+        delete
+        from gift
+        where id = #{id}
+    </delete>
+    <select id="getAllGifts" resultMap="giftResult">
+        select id, description, child_id
+        from gift
+        order by id
+    </select>
+    <select id="getGiftById" resultMap="giftResult"
+            parameterType="int">
+        select id, description, child_id
+        from gift
+        where id = #{id}
+    </select>
+    <select id="getAllGiftsByChildId" resultMap="giftResult" parameterType="int">
+        select id, description
+        from gift
+        where child_id = #{id}
+    </select>
+
+    <resultMap id="giftResult" type="Gift">
+        <id property="id" column="id"/>
+        <result property="description" column="description"/>
+        <association property="child" column="child_id" javaType="Child"
+                     select="im430.xmas.dao.child.ChildDAO.getChildById"/>
+    </resultMap>
+</mapper>
