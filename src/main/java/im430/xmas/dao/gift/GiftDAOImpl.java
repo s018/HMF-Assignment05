@@ -16,7 +16,8 @@ public class GiftDAOImpl implements GiftDAO {
     private SqlSession sqlSession;
 
     public void addGift(Gift gift) {
-        this.sqlSession.insert("im430.xmas.dao.gift.GiftDAO.addGift", gift);
+        int id = this.sqlSession.insert("im430.xmas.dao.gift.GiftDAO.addGift", gift);
+        gift.setId(id);
     }
 
     public void removeGift(Gift gift) {

@@ -20,7 +20,8 @@ public class ChildDAOImpl implements ChildDAO {
 
 
     public void addChild(Child child) {
-        this.sqlSession.insert("im430.xmas.dao.child.ChildDAO.addChild", child);
+        int id = this.sqlSession.insert("im430.xmas.dao.child.ChildDAO.addChild", child);
+        child.setId(id);
     }
 
     public void removeChild(Child child) {

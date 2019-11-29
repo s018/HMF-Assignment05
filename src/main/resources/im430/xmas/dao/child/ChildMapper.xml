@@ -8,7 +8,7 @@
         insert into child(name, address_id) values (#{name}, #{address.id})
     </insert>
     <update id="updateChild" parameterType="Child">
-        update child set name=#{name} address_id=#{address.id} where id=#{id}
+        update child set name=#{name}, address_id=#{address.id} where id=#{id}
     </update>
     <delete id="removeChild" parameterType="Child">
         delete from child where id=#{id}

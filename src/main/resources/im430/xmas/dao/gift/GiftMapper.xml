@@ -5,7 +5,7 @@
 <mapper namespace="im430.xmas.dao.gift.GiftDAO">
     <insert id="addGift" parameterType="Gift"
             useGeneratedKeys="true" keyProperty="id">
-        insert into gift(description, child_id) values (#{description}, #{childId})
+        insert into gift(description, child_id) values (#{description}, #{child.id})
     </insert>
     <update id="updateGift" parameterType="Gift">
         update gift set description=#{description} where id=#{id}

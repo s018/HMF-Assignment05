@@ -39,4 +39,6 @@
     </bean>
 
     <bean id="childDAO" class="im430.xmas.dao.child.ChildDAOImpl"/>
+    <bean id="addressDAO" class="im430.xmas.dao.address.AddressDAOImpl"/>
+    <bean id="giftDAO" class="im430.xmas.dao.gift.GiftDAOImpl"/>
 </beans>
