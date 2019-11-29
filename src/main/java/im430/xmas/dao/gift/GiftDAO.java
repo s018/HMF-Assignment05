@@ -1,4 +1,4 @@
-package im430.xmas.dao;
+package im430.xmas.dao.gift;
 
 import im430.xmas.business.Gift;
 

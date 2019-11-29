@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="im430.xmas.dao.child.ChildDAO">
+    <insert id="addChild" parameterType="Child"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into child(name, address_id) values (#{name}, #{address.id})
+    </insert>
+    <update id="updateChild" parameterType="Child">
+        update child set name=#{name} address_id=#{address.id} where id=#{id}
+    </update>
+    <delete id="removeChild" parameterType="Child">
+        delete from child where id=#{id}
+    </delete>
+    <select id="getAllChildren" resultMap="childResult">
+        select child.id, child.name, child.address_id,
+        address.id, address.text
+		from child
+		inner join address on child.address_id = address.id
+    </select>
+    <select id="getChildById" resultMap="childResult"
+            parameterType="int">
+        select child.id, child.name, child.address_id,
+        address.id, address.text
+		from child
+		inner join address on child.address_id = address.id
+		where child.id = #{id}
+    </select>
+
+    <resultMap id="childResult" type="Child">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <association property="address" javaType="Address"
+                     select="im430.xmas.dao.address.AddressDAO.getAddressById"
+                     column="address_id"/>
+        <collection property="gifts" javaType="ArrayList" ofType="Gift"
+                    select="im430.xmas.dao.gift.GiftDAO.getAllGiftsByChildId" column="id"/>
+    </resultMap>
+</mapper>

@@ -10,10 +10,14 @@ public class Child {
     private List<Gift> gifts;
 
     public Child() {
+        this("", null, null);
+    }
+
+    public Child(String name, Address address, List<Gift> gifts) {
         this.id = -1;
-        this.name = "";
-        this.address = null;
-        this.gifts = null;
+        this.name = name;
+        this.address = address;
+        this.gifts = gifts;
     }
 
     public List<Gift> getGifts() {
