@@ -4,10 +4,16 @@ public class Gift {
 
     private int id;
     private String description;
+    private Child child;
 
     public Gift() {
+        this(null, null);
+    }
+
+    public Gift(String description, Child child) {
         this.id = -1;
-        this.description = "";
+        this.description = description;
+        this.child = child;
     }
 
     public String getDescription() {
@@ -24,6 +30,14 @@ public class Gift {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Child getChild() {
+        return child;
+    }
+
+    public void setChild(Child child) {
+        this.child = child;
     }
 
     @Override

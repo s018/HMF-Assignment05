@@ -6,8 +6,12 @@ public class Address {
     private String text;
 
     public Address() {
+        this("");
+    }
+
+    public Address(String text) {
         this.id = -1;
-        this.text = "";
+        this.text = text;
     }
 
     public String getText() {
