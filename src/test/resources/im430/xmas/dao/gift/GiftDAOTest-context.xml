@@ -38,5 +38,6 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <bean id="childDAO" class="im430.xmas.dao.child.ChildDAOImpl"/>
     <bean id="giftDAO" class="im430.xmas.dao.gift.GiftDAOImpl"/>
 </beans>

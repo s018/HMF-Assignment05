@@ -3,14 +3,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="im430.xmas.dao.gift.GiftDAO">
-    <insert id="addGift" parameterType="Gift"
+    <insert id="addGift" parameterType="Gift" keyColumn="id"
             useGeneratedKeys="true" keyProperty="id">
         insert into gift(description, child_id)
         values (#{description}, #{child.id})
     </insert>
     <update id="updateGift" parameterType="Gift">
         update gift
-        set description=#{description}
+        set description=#{description}, child_id=#{child.id}
         where id = #{id}
     </update>
     <delete id="removeGift" parameterType="Gift">

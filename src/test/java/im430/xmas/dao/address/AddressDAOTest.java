@@ -27,7 +27,7 @@ class AddressDAOTest {
         List<Address> addresses = addressDAO.getAllAddresses();
 
         assertNotNull(addresses);
-        assertEquals(2, addresses.size());
+        assertEquals(4, addresses.size());
     }
 
     @Test
@@ -38,7 +38,7 @@ class AddressDAOTest {
 
         assertNotNull(address);
         assertEquals(addressId, address.getId());
-        assertEquals("Softwarepark 41, 4232 Hagenberg i. M.", address.getText());
+        assertEquals("Planckstraße 2, 4020 Linz", address.getText());
     }
 
     @Test
@@ -60,7 +60,7 @@ class AddressDAOTest {
         Address address = addressDAO.getAddressById(addressId);
 
         assertNotNull(address);
-        assertEquals("Softwarepark 41, 4232 Hagenberg i. M.", address.getText());
+        assertEquals("Planckstraße 2, 4020 Linz", address.getText());
 
         address.setText("Rosenweg 1, 4064 Oftering");
         addressDAO.updateAddress(address);
