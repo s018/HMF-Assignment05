@@ -69,13 +69,6 @@ VALUES (3, 'Thomas', 3),
        (24, 'Thomas', 3),
        (25, 'Richard', 3);
 
-INSERT INTO gift(id, description, child_id)
-VALUES (1, 'iPhone X', 1);
-INSERT INTO gift(id, description, child_id)
-VALUES (2, 'Hund', 1);
-INSERT INTO gift(id, description, child_id)
-VALUES (3, 'Millenium-Falke', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -89,6 +82,14 @@ CREATE TABLE `Gift`
     `child_id`    int(10) UNSIGNED NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
+
+
+INSERT INTO gift(id, description, child_id)
+VALUES (1, 'iPhone X', 1);
+INSERT INTO gift(id, description, child_id)
+VALUES (2, 'Hund', 1);
+INSERT INTO gift(id, description, child_id)
+VALUES (3, 'Millenium-Falke', 2);
 
 --
 -- Indexes for dumped tables
